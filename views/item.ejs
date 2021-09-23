@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <title>Document</title>
+</head>
+
+<body class='container'>
+    <h1>Item Tables</h1>
+    <hr>
+    <hr><br>
+    <br>
+
+    <table id="myTable" class="cell-border" width="100%">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Search Description</th>
+                <th>Unit Price</th>
+                <th>CMB247</th>
+                <th>STORES CMB</th>
+                <th>KDY</th>
+                <th>KUG</th>
+                <th>ANP</th>
+                <th>CMB281</th>
+                <th>NEG</th>
+                <th>MTR</th>
+                <th>BAT</th>
+                <th>STO CMB12</th>
+                <th>HO</th>
+                <th>STORES</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%for(item of items) {%>
+                <tr>
+                    <td>
+                        <%=item.Description%>
+                    </td>
+                    <td>
+                        <%=item.SearchDescription%>
+                    </td>
+                    <td>
+                        <%=item.UnitPrice%>
+                    </td>
+                    <td>
+                        <%=item.CMB247%>
+                    </td>
+                    <td>
+                        <%=item.STORESCMB%>
+                    </td>
+                    <td>
+                        <%=item.KDY%>
+                    </td>
+                    <td>
+                        <%=item.KUG%>
+                    </td>
+                    <td>
+                        <%=item.ANP%>
+                    </td>
+                    <td>
+                        <%=item.CMB281%>
+                    </td>
+                    <td>
+                        <%=item.NEG%>
+                    </td>
+                    <td>
+                        <%=item.MTR%>
+                    </td>
+                    <td>
+                        <%=item.BAT%>
+                    </td>
+                    <td>
+                        <%=item.STOCMB12%>
+                    </td>
+                    <td>
+                        <%=item.HO%>
+                    </td>
+                    <td>
+                        <%=item.STORES%>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+        $('#myTable').DataTable();
+        // $(document).ready(function () {
+        //     $('#myTable').DataTable();
+        // })
+    </script>
+</body>
+
+</html>
