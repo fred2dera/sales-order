@@ -50,56 +50,72 @@ router.post("/new", async (req, res) => {
     Quantity,
     UnitPrice,
   } = req.body;
+  const typeOfItem = typeof Description;
 
-  const itemData = [];
-  for (let i = 0; i < Description.length; i++) {
-    itemData.push({
-      Description: Description[i],
-      Quantity: Quantity[i],
-      UnitPrice: UnitPrice[i],
+  if (typeOfItem === "string") {
+    const newOrder = new Order({
+      No: No,
+      Customer: Customer,
+      Date: Date,
+      Terms: Terms,
+      Discount: Discount,
+      Remarks: Remarks,
+      Method: Method,
+      Salesperson: Salesperson,
+      Item: {
+        Description: Description,
+        Quantity: Quantity,
+        UnitPrice: UnitPrice,
+      },
     });
-  }
-  const newOrder = new Order({
-    No: No,
-    Customer: Customer,
-    Date: Date,
-    Terms: Terms,
-    Discount: Discount,
-    Remarks: Remarks,
-    Method: Method,
-    Salesperson: Salesperson,
-    Item: itemData,
-  });
-  await newOrder.save();
-  ejs.renderFile(
-    "./views/email.ejs",
-    { order: newOrder },
-    async (err, data) => {
-      if (err) {
-        res.send(`An Error Occurred ! Error: ${err}`);
-      } else {
-        await sendMail(data);
-        res.redirect("/orders/list");
-      }
+    await newOrder.save();
+    res.redirect("/orders/list");
+  } else {
+    const itemData = [];
+    for (let i = 0; i < Description.length; i++) {
+      itemData.push({
+        Description: Description[i],
+        Quantity: Quantity[i],
+        UnitPrice: UnitPrice[i],
+      });
     }
-  );
+    const newOrder = new Order({
+      No: No,
+      Customer: Customer,
+      Date: Date,
+      Terms: Terms,
+      Discount: Discount,
+      Remarks: Remarks,
+      Method: Method,
+      Salesperson: Salesperson,
+      Item: itemData,
+    });
+    await newOrder.save();
+    res.redirect("/orders/list");
+  }
 });
 
 router.get("/sendmail/:id", async (req, res) => {
   const { id } = req.params;
   const findOrder = await Order.findById(id);
-  ejs.renderFile(
-    "./views/email.ejs",
-    { order: findOrder },
-    async (err, data) => {
-      if (err) {
-        res.send(`An Error Occurred ! Error: ${err}`);
-      } else {
-        await sendMail(data);
-        res.redirect("/orders/list");
+  try {
+    ejs.renderFile(
+      "./views/email.ejs",
+      { order: findOrder },
+      async (err, data) => {
+        console.log(findOrder);
+        if (err) {
+          console.log(err);
+          res.send(`An Error Occurred ! Error: ${err}`);
+        } else {
+          await sendMail(data);
+          res.redirect("/orders/list");
+        }
       }
-    }
-  );
+    );
+  } catch (e) {
+    res.send(e);
+  }
 });
 
 router.get("/list", async (req, res) => {
@@ -151,26 +167,48 @@ router.post("/edit/:id", async (req, res) => {
     UnitPrice,
   } = req.body;
 
-  const itemData = [];
-  for (let i = 0; i < Description.length; i++) {
-    itemData.push({
-      Description: Description[i],
-      Quantity: Quantity[i],
-      UnitPrice: UnitPrice[i],
+  const typeOfItem = typeof Description;
+
+  if (typeOfItem === "string") {
+    await Order.findByIdAndUpdate(id, {
+      No: No,
+      Customer: Customer,
+      Date: Date,
+      Terms: Terms,
+      Discount: Discount,
+      Remarks: Remarks,
+      Method: Method,
+      Salesperson: Salesperson,
+      Item: {
+        Description: Description,
+        Quantity: Quantity,
+        UnitPrice: UnitPrice,
+      },
     });
+    res.redirect("/orders/list");
+  } else {
+    const itemData = [];
+    for (let i = 0; i < Description.length; i++) {
+      itemData.push({
+        Description: Description[i],
+        Quantity: Quantity[i],
+        UnitPrice: UnitPrice[i],
+      });
+    }
+
+    await Order.findByIdAndUpdate(id, {
+      No: No,
+      Customer: Customer,
+      Date: Date,
+      Terms: Terms,
+      Discount: Discount,
+      Remarks: Remarks,
+      Method: Method,
+      Salesperson: Salesperson,
+      Item: itemData,
+    });
+    res.redirect("/orders/list");
   }
-  const updateOrder = await Order.findByIdAndUpdate(id, {
-    No: No,
-    Customer: Customer,
-    Date: Date,
-    Terms: Terms,
-    Discount: Discount,
-    Remarks: Remarks,
-    Method: Method,
-    Salesperson: Salesperson,
-    Item: itemData,
-  });
-  if (updateOrder) res.redirect("/orders/list");
 });
 
 router.get("/delete/:id", async (req, res) => {

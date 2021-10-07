@@ -17,15 +17,28 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <p> Hello </p>
-                <p> Please process the following order, and send via <%=order.Method%> </p>
+                <br>
+                <p> Hello, </p>
+
+                <p> Please process the following order, and send via <%=order.Method%>
+                </p>
+
                 <hr>
-                <h2><%=order.Customer%></h2>
+                <h2>
+                    <%=order.Customer%>
+                </h2>
                 <hr>
-                <h4><%=order.Salesperson%></h4>
+                <h4>
+                    <%=order.Salesperson%>
+                </h4>
                 <hr>
-                <h4><%=order.Date%></h4>
-                <hr><p><%=order.Remarks %> </p>
+                <h4>
+                    <%=order.Date%>
+                </h4>
+                <hr>
+                <p>
+                    <%=order.Remarks %>
+                </p>
             </div>
             <div class="col">
                 <br>
@@ -45,20 +58,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <%for(item of order.Item) {%>
+                        <%for(let i=0; i < order.Item.length; i++) {%>
                             <tr>
-                                <td><%=item.Description%></td>
-                                <td><%=item.Quantity%> </td>
-                                <td><%=item.UnitPrice%> </td>
-                                <td><%-item.UnitPrice * item.Quantity%> </td>
+                                <td>
+                                    <%=order.Item[i].Description%>
+                                </td>
+                                <td>
+                                    <%=order.Item[i].Quantity%>
+                                </td>
+                                <td>
+                                    <%=order.Item[i].UnitPrice%>
+                                </td>
+                                <td>
+                                    <%-order.Item[i].UnitPrice * order.Item[i].Quantity%>
+                                </td>
                             </tr>
-                        <% } %> 
+                            <% } %>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    
+
 
 
 

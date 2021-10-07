@@ -49,34 +49,43 @@
 
             </div>
             <div class="container mb-2" id="orderList">
-                <%for(item of order.Item) {%>
-                    <div class="row g-3 mt-2">
+                <%for(let i = 0; i < order.Item.length; i++) {%>
+                    <div class="row g-3 mt-2" id="orderLine<%=i%>" >
+                        <div class="col-md-1"> <a id="deleteBtn<%=i%>" class="btn btn-danger">X</a> </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <input type="text" class="form-control" id="Description" name="Description" readonly
-                                    value="<%=item.Description%>" required>
+                                    value="<%=order.Item[i].Description%>" required>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <input type="number" class="form-control" id="Quantity" name="Quantity" readonly
-                                    value="<%=item.Quantity%>" required>
+                                    value="<%=order.Item[i].Quantity%>" required>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <input type="number" class="form-control" id="UnitPrice" name="UnitPrice" readonly
-                                    value="<%=item.UnitPrice%>">
+                                    value="<%=order.Item[i].UnitPrice%>">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <input type="number" class="form-control" id="Total" name="Total" readonly
-                                    value="<%-item.UnitPrice * item.Quantity%>">
+                                    value="<%-order.Item[i].UnitPrice * order.Item[i].Quantity%>">
                             </div>
                         </div>
+                        <hr>
                     </div>
-                    <hr>
+                    
+                    <script> 
+                        const orderLine<%-i%> = document.getElementById("orderLine<%=i%>");
+                        const deleteBtn<%-i%> = document.getElementById("deleteBtn<%=i%>");
+                        deleteBtn<%-i%>.addEventListener("click",()=>{
+                        orderLine<%-i%>.remove();
+                       })
+                    </script>
 
                     <% } %>
             </div>

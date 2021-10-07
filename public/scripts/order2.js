@@ -85,12 +85,16 @@ $(document).ready(() => {
       unitPrice = $("#unitprice").val();
       $("#totalamount").val(itemQty * parseInt(unitPrice));
     });
+
+    let i = 0;
   
     $("#addBtn").click(() => {
+      i = i + 1;
       const item = $("[name=item1]").val();
       const quantity = $("[name=quantity]").val();
       $("#orderList").append(`
-         <div class="row g-3 mt-2">
+        <div class="row g-3 mt-2" id="orderLine${i}" >
+        <div class="col-md-1"> <button id="deleteBtn${i}" class="btn btn-danger">X</button> </div>
          <div class="col-md-3">
              <div class="form-group">
                  <input type="text" class="form-control" id="Description" name="Description" readonly value="${item}" required>
@@ -115,6 +119,12 @@ $(document).ready(() => {
           </div>
          </div>
          <hr>
+         <script> 
+         const orderLine${i} = document.getElementById("orderLine${i}");
+         const deleteBtn${i} = document.getElementById("deleteBtn${i}");
+         deleteBtn${i}.addEventListener("click",()=>{
+         orderLine${i}.remove();
+        })</script>
          `);
       $("[name=item1]").val("");
       $("[name=quantity]").val("");

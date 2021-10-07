@@ -47,7 +47,8 @@
                     </div>
                     <div class="form-group">
                         <label for="Salesperson">Salesperson</label>
-                        <input type="text" class="form-control" id="Salesperson" name="Salesperson" readonly placeholder="">
+                        <input type="text" class="form-control" id="Salesperson" name="Salesperson" readonly
+                            placeholder="">
                     </div>
                 </div>
 
@@ -71,7 +72,7 @@
                     <input class="form-control" autoComplete="on" list="item1" name="item1" />
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="form-group">
                     <label for="quantity">Quantity</label>
                     <input type="number" class="form-control" id="quantity" name="quantity">
@@ -93,8 +94,11 @@
         </div>
         <hr>
 
-        <div class="col-4 mt-2">
-            <button class="btn btn-success" id="addBtn">+</button>
+        <div class="row g-3 mt-2">
+
+            <div class="col-md-1">
+                <button class="btn btn-success" id="addBtn">+</button>
+            </div>
         </div>
         <hr>
         <div class="row">
@@ -113,16 +117,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
         integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
 
-    </script>
     <script>
         var itemData = <%-JSON.stringify(items) %>
         var cusData = <%-JSON.stringify(customers) %>
         var orderNo = <%-JSON.stringify(orderNo) %>
-        $("#No").val(parseInt(orderNo) + 1);
+            $("#No").val(parseInt(orderNo) + 1);
     </script>
-    <script src="/scripts/order.js"></script>
 
+    <script src="/scripts/order.js"></script>
 
     <%-include("../partials/footer")%>
