@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <title>Document</title>
+</head>
+
+
+
+<body class='container-fluid'>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2  animate__animated animate__fadeInDown">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/"><span class="material-icons">
+                home
+                </span></a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <% if(user) {%>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link" href="/stock/view">Inventory</a>
+                        <a class="nav-link" href="/customer/list">Customers</a>
+                        <a class="nav-link" href="/orders">Orders</a>
+                        <a class="nav-link" href="/sales/details">Sales Information</a>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+        <% if(!user) {%>
+            <a href="/user/login" class="btn btn-success m-1"><span class="material-icons">
+                login
+                </span></a>
+            <a href="/user/new" class="btn btn-warning m-1"><span class="material-icons">
+                person_add
+                </span></a>
+            <% } %>
+                <% if(user) {%>
+                    <a href="/user/logout" class="btn btn-danger m-1">Logout</a>
+                    <% } %>
+    </nav>
+
+    <hr>

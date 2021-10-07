@@ -1,0 +1,39 @@
+<%-include("../partials/header")%>
+    <style>
+        td{
+            font-size:12px
+        }
+        td:hover{
+            font-size:13px;
+        }
+    </style>
+    <hr>
+    <h1 align="center"> <b>Customer List</b> </h1>
+    <hr>
+
+
+    <table id="myTable" class="cell-border compact animate__animated animate__pulse" width="100%">
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+        const dataSet = <%-JSON.stringify(customers)%>
+
+            $(document).ready(function () {
+                $('#myTable').DataTable({
+                    data: dataSet,
+                    columns: [
+                        { title: "No" },
+                        { title: "Name" },
+                        { title: "Address" },
+                        { title: "Address 2" },
+                        { title: "Salesperson" },
+                        { title: "Phone No." },
+                        { title: "Order" },
+                        { title: "Ledger" },
+                    ]
+                });
+            });
+    </script>
+    <%-include("../partials/footer")%>

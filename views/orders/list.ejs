@@ -1,0 +1,61 @@
+<%-include("../partials/header")%>
+    <div class="container">
+        <h1>Orders List</h1>
+        <hr>
+        <div class="accordion" id="accordionExample">
+            <% for(let i=0; i<orders.length; i++) {%>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne<%=i%>">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne<%=i%>" aria-expanded="true" aria-controls="collapseOne<%=i%>">
+                            <%=orders[i].No%> - <%=orders[i].Customer%> - <%=orders[i].Date%>
+                        </button>
+                    </h2>
+                    <div id="collapseOne<%=i%>" class="accordion-collapse collapse" aria-labelledby="headingOne<%=i%>"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body" id="accordion-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Description</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%const orderItem = orders[i].Item%> 
+                                    <%for(let j = 0; j < orderItem.length ; j++) {%> 
+                                        <tr>
+                                            <td><%=orderItem[j].Description%> </td>
+                                            <td><%=orderItem[j].Quantity%> </td>
+                                            <td><%=orderItem[j].UnitPrice%> </td> 
+                                            <td><%-orderItem[j].Quantity * orderItem[j].UnitPrice%> </td>                                                                                                                                  
+                                        </tr>
+                                    <%} %>
+                                </tbody>
+                            </table>
+                        <a class="btn btn-warning" href="/orders/edit/<%=orders[i]._id%>"> Edit</a>
+                        <a class="btn btn-danger" href="/orders/delete/<%=orders[i]._id%>"> Delete</a>
+                        <a class="btn btn-success m-auto" href="/orders/sendmail/<%=orders[i]._id%>"> Send Mail</a>
+                        </div>
+                    </div>
+                </div>
+                <% } %> 
+        </div>
+
+
+
+
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
+        integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <%-include("../partials/footer")%>

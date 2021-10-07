@@ -1,0 +1,42 @@
+<%-include("../partials/header")%>
+
+  <style>
+    .card {
+      margin: 0 auto;
+      /* Added */
+      float: none;
+      /* Added */
+      margin-bottom: 10px;
+      /* Added */
+      box-shadow: 5px 5px 5px 5px grey;
+    }
+  </style>
+
+  <div class="card" style="width: 40rem;">
+    
+    <div class="card-body">
+      <h1 class="card-title">User Registration </h1>
+    </div>
+    <div class="card-body">
+      <form action="/user/new" method="POST">
+        <div class="mb-3 row">
+          <label for="username" class="col-sm-2 col-form-label">Username</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="username" name="username">
+          </div>
+        </div>
+    </div>
+    <div class="card-body">
+      <div class="mb-3 row">
+        <label for="password" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="password" name="password">
+        </div>
+      </div>
+      <button class="btn btn-success justify-center">Register</button>
+    </div>
+    </form>
+    <img src="/img/register.jpg" class="card-img-top" alt="...">
+  </div>
+
+  <%-include("../partials/footer")%>

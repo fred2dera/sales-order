@@ -1,0 +1,151 @@
+<%-include("../partials/header")%>
+    <div class="container">
+        <h1>Order</h1>
+        <hr>
+        <form action="/orders/edit/<%=order._id%>" method="POST">
+            <div class="row">
+                <div class="col-8"></div>
+                <div class="col-4">
+                    <button class="btn btn-danger">Submit Order</button>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="No">Order No.</label>
+                        <input type="text" class="form-control" id="No" name="No" placeholder=""
+                           readonly required value="<%=order.No%> ">
+                    </div>
+                    <div class="form-group">
+                        <label for="Customer">Customer Name</label>
+                        <input type="text" class="form-control" autoComplete="on" name="Customer" readonly
+                            value="<%=order.Customer%> " required />
+                    </div>
+                    <div class="form-group">
+                        <label for="Date">Date</label>
+                        <input type="date" class="form-control" id="Date" name="Date" placeholder="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Terms">Terms</label>
+                        <input type="text" class="form-control" id="Terms" name="Terms" value="<%=order.Terms%>" >
+                    </div>
+                    <div class="form-group">
+                        <label for="Discount">Discount</label>
+                        <input type="text" class="form-control" id="Discount" name="Discount" value="<%=order.Discount%>">
+                    </div>
+                    <div class="form-group">
+                        <label for="Remarks">Remarks</label>
+                        <input type="text" class="form-control" id="Remarks" name="Remarks" value="<%=order.Remarks%>">
+                    </div>
+                    <div class="form-group">
+                        <label for="Method">Method</label>
+                        <input type="text" class="form-control" id="Method" name="Method" value="<%=order.Method%>">
+                    </div>
+                    <div class="form-group">
+                        <label for="Salesperson">Salesperson</label>
+                        <input type="text" class="form-control" id="Salesperson" name="Salesperson" readonly value="<%=order.Salesperson%>">
+                    </div>
+                </div>
+
+            </div>
+            <div class="container mb-2" id="orderList">
+                <%for(item of order.Item) {%>
+                    <div class="row g-3 mt-2">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="Description" name="Description" readonly
+                                    value="<%=item.Description%>" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="Quantity" name="Quantity" readonly
+                                    value="<%=item.Quantity%>" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="UnitPrice" name="UnitPrice" readonly
+                                    value="<%=item.UnitPrice%>">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="Total" name="Total" readonly
+                                    value="<%-item.UnitPrice * item.Quantity%>">
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <% } %>
+            </div>
+
+
+        </form>
+
+        <div class="row g-3 mt-3">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="itemlist1">Item Description</label>
+                    <datalist id="item1">
+                        <%for(item of items) {%>
+                            <option value="<%=item.Description%>" data-id="<%=item.No_ %>">
+                                <%} %>
+                    </datalist>
+                    <input class="form-control" autoComplete="on" list="item1" name="item1" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" class="form-control" id="quantity" name="quantity">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="unitprice">Unit Price</label>
+                    <input type="number" class="form-control" id="unitprice" name="unitprice">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="totalamount">Total</label>
+                    <input type="number" class="form-control" id="totalamount" name="totalamount" readonly>
+                </div>
+            </div>
+
+        </div>
+        <hr>
+
+        <div class="col-4 mt-2">
+            <button class="btn btn-success" id="addBtn">+</button>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <ul id="itemDetail" class="list-group">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
+        integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+
+    </script>
+    <script>
+        var itemData = <%-JSON.stringify(items) %>
+
+    </script>
+    <script src="/scripts/order.js"></script>
+
+
+    <%-include("../partials/footer")%>

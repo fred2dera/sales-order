@@ -1,0 +1,64 @@
+<%-include("../partials/header")%>
+    <script src="https://raw.githubusercontent.com/openexchangerates/accounting.js/master/accounting.js"></script>
+    <style>
+        .card {
+            margin: 0 auto;
+            /* Added */
+            float: none;
+            /* Added */
+            margin-bottom: 10px;
+            /* Added */
+            width: 50%;
+        }
+    </style>
+    <h1 align="center"> <b>Customer List</b> </h1>
+    <table id="myTable" class="cell-border compact animate__animated animate__bounceInLeft">
+        <thead>
+            <tr>
+                <th>Posting Date</th>
+                <th>Name</th>
+                <th>Document No.</th>
+                <th>Balance</th>
+                <th>Due Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(entry of entries) {%>
+                <tr>
+                    <% const date=new Date(parseInt(entry.Posting_Date.slice(6,19)))%>
+                    <% const date2=new Date(parseInt(entry.Due_Date.slice(6,19)))%>
+                    <% const dateFinal = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`%> 
+                    <% const dueDate = `${date2.getDate()}/${date2.getMonth()+1}/${date2.getFullYear()}` %> 
+                        <td>
+                            <%-dateFinal%>
+                        </td>
+                        <td>
+                            <%=entry.Name%>
+                        </td>
+                        <td>
+                            <%=entry.Document_No%>
+                        </td>
+                        <td style="text-align:center;">
+                            <% const value = new Intl.NumberFormat().format(entry.Sum_Remaining_Amount) %>     
+                            <%-value%>
+                        </td>
+                        <td>
+                            <%-dueDate%> 
+                        </td>
+                </tr>
+                <%} %>
+        </tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        })
+    </script>
+
+
+
+    <%-include("../partials/footer")%>

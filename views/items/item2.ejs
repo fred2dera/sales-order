@@ -1,0 +1,44 @@
+<%-include("../partials/header")%>
+
+
+    <h1>Item Tables</h1>
+    <hr>
+
+    <style>
+        td{
+            font-size: 12px;
+        }
+    </style>
+    <table id="myTable" class="cell-border compact" width="100%">
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+        const dataSet = <%-JSON.stringify(items)%>
+
+            $(document).ready(function () {
+                $('#myTable').DataTable({
+                    data: dataSet,
+                    columns: [
+                        { title: "Description" },
+                        { title: "UnitPrice" },
+                        { title: "CMB247" },
+                        { title: "STORESCMB" },
+                        { title: "KDY" },
+                        { title: "KUG" },
+                        { title: "ANP" },
+                        { title: "CMB281" },
+                        { title: "NEG" },
+                        { title: "MTR" },
+                        { title: "BAT" },
+                        { title: "STOCMB12" },
+                        { title: "HO" },
+                        { title: "STORES" },
+                        { title: "Application" },
+                    ]
+                });
+            });
+    </script>
+
+    <%-include("../partials/footer")%>

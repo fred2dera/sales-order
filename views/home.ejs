@@ -1,12 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Authentication Setups</title>
-</head>
-<body>
-    <h1>User Authentication Setup</h1>
-</body>
-</html>
+<%-include("./partials/header")%>
+    <style>
+        li:hover {
+            background-color: tomato;
+            text-decoration: underline;
+            font-weight: 600;
+            color: darkblue;
+        }
+    </style>
+
+    <div class="row">
+        <div class="col-6 pt-4">
+            <h1 class="text-center animate__animated animate__backInLeft"
+                style="font-weight: 900; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; text-align: center;">
+                Sophistication</h1>
+            <p class="text-center p-5 animate__animated animate__tada">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti reprehenderit
+                ducimus molestiae nulla
+                possimus labore, voluptas minus, facere reiciendis non numquam officiis perspiciatis dicta debitis
+                minima ipsum, doloremque in sit!Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+                reprehenderit ducimus molestiae nulla
+                possimus labore, voluptas minus, facere reiciendis non numquam officiis perspiciatis dicta debitis
+                minima ipsum, doloremque in sit!</p>
+            <ul class="list-group p-5 animate__animated animate__fadeInTopLeft" style="width:500px;">
+                <li class="list-group-item">An item</li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+                <li class="list-group-item">A fourth item</li>
+                <li class="list-group-item">And a fifth one</li>
+            </ul>
+        </div>
+        <div class="col-4">
+            <img src="https://unsplash.com/photos/KOzMQsjut6U/download?force=true&w=1920"
+                class="img img-fluid border rounded animate__animated  animate__backInRight" alt="...">
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-4">
+            <img src="https://unsplash.com/photos/Ve9YviAcjVo/download?force=true&w=1920"
+                class="img img-fluid border rounded m-5" alt="...">
+        </div>
+        <div class="col-6 pt-4">
+            <h1
+                style="font-weight: 900; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; text-align: center;">
+                Precision</h1>
+            <p class="text-center p-5 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti reprehenderit
+                ducimus molestiae nulla
+                possimus labore, voluptas minus, facere reiciendis non numquam officiis perspiciatis dicta debitis
+                minima ipsum, doloremque in sit!Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+                reprehenderit ducimus molestiae nulla
+                possimus labore, voluptas minus, facere reiciendis non numquam officiis perspiciatis dicta debitis
+                minima ipsum, doloremque in sit!</p>
+            <ul class="list-group p-5" style="width:500px;">
+                <li class="list-group-item">An item</li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+                <li class="list-group-item">A fourth item</li>
+                <li class="list-group-item">And a fifth one</li>
+            </ul>
+        </div>
+    </div>
+
+    <%-include("./partials/footer")%>
